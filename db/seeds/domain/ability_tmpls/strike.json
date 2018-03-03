@@ -1,0 +1,9 @@
+{
+  "name": "Strike",
+  "effects": [
+    {
+      "type": "damage",
+      "value": 5.0
+    }
+  ]
+}

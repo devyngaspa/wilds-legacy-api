@@ -1,0 +1,9 @@
+{
+  "name": "Chomp",
+  "effects": [
+    {
+      "type": "damage",
+      "value": 6.0
+    }
+  ]
+}

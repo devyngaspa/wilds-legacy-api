@@ -1,0 +1,9 @@
+{
+  "name": "Burn",
+  "effects": [
+    {
+      "type": "damage",
+      "value": 4.0
+    }
+  ]
+}

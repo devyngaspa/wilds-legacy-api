@@ -1,0 +1,8 @@
+{
+  "relationships": [
+    {
+      "key": "actorable",
+      "value": "monster_bearshark"
+    }
+  ]
+}

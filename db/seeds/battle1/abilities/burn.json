@@ -1,0 +1,8 @@
+{
+  "relationships": [
+    {
+      "key": "ability_tmpl_id",
+      "value": "ability_tmpl_burn"
+    }
+  ]
+}

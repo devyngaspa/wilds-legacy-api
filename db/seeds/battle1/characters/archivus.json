@@ -1,0 +1,23 @@
+{
+  "name": "Archivus",
+  "hp": 9,
+  "stats": {
+    "ferocity": 3,
+    "endurance": 6,
+    "knowledge": 9,
+    "quickness": 4,
+    "resilience": 8
+  },
+  "relationships": [
+    {
+      "key": "character_tmpl_id",
+      "value": "character_tmpl_serpent_mage"
+    },
+    {
+      "key": "ability_ids",
+      "value": [
+        "ability_burn"
+      ]
+    }
+  ]
+}

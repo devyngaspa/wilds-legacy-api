@@ -1,0 +1,22 @@
+{
+  "hp": 15,
+  "stats": {
+    "ferocity": 10,
+    "endurance": 7,
+    "knowledge": 1,
+    "quickness": 3,
+    "resilience": 2
+  },
+  "relationships": [
+    {
+      "key": "monster_tmpl_id",
+      "value": "monster_tmpl_gigan"
+    },
+    {
+      "key": "ability_ids",
+      "value": [
+        "ability_chomp"
+      ]
+    }
+  ]
+}
