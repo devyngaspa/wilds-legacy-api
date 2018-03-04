@@ -7,9 +7,14 @@ logger       = require('morgan');
 cookieParser = require('cookie-parser');
 bodyParser   = require('body-parser');
 mongoose     = require('mongoose');
-Wdb          = require('../db/db')
-whelp        = require('../helpers/common')
-wlog         = function(...args) { console.log(...args); }
+Wdb          = require('../db/db');
+whelp        = require('../helpers/common');
+wlog         = function(...args) { console.log(...args); };
+Simulate     = require('../lib/simulate');
+Simulation   = require('../lib/simulation');
+Decider      = require('../lib/decide');
+Waction      = require('../lib/action');
+Weffect      = require('../lib/effect');
 
 module.exports = {
 

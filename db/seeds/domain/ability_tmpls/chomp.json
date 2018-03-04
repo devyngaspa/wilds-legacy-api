@@ -1,9 +1,13 @@
 {
-  "name": "Chomp",
+  "name": "Double Chomp",
   "effects": [
     {
       "type": "damage",
       "value": 6.0
+    },
+    {
+      "type": "damage",
+      "value": 2.0
     }
   ]
 }

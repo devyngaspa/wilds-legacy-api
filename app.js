@@ -1,11 +1,9 @@
 var initializer = require('./initializers/_base')
 initializer.initialize().then( () => {
-  Character.find({name: 'Damien'}, (err, document) => {
-    p = document[0].abilities();
-    p.then( (abilities) => {
-      console.log('abilities', abilities);
-    });
+  Simulate.encounter().then( (simulation) => {
+    simulation.go();
   });
+  
 });
 
 var index = require('./routes/index');

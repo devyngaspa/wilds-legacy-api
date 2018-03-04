@@ -1,0 +1,11 @@
+{
+  "relationships": [
+    {
+      "key": "party_ids",
+      "value": [
+        "party_player",
+        "party_bearshark"
+      ]
+    }
+  ]
+}

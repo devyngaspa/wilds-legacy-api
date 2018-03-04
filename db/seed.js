@@ -57,7 +57,7 @@ function print_seed (model_name, document, identifier, err=null) {
 
   if (err) return console.error('Failed to seed ' + class_name + ': ', err, document)
 
-  wlog('Seeded ' + class_name + ': ' + [model_name, identifier].join('_'));
+  wlog('Seeded ' + class_name + ': ' + [model_name, identifier].join('_') + ' ' + document._id);
   return document
 
 }
@@ -116,7 +116,7 @@ function hook_up_relationships() {
         let model_name = value.split('_')[0];
         let model      = model_map[inflection.classify(model_name)];
         if (!model[value]) { throw error_no_model_for_identifier(value); }
-        let id         = model[value].id;
+        let id         = model[value]._id;
         document[key]  = { id: id, type: model_name};
       }
       else {
@@ -126,13 +126,13 @@ function hook_up_relationships() {
         if (Array.isArray(value)) {
           value.forEach( (identifier) => {
             if (!model[identifier]) { throw error_no_model_for_identifier(identifier); }
-            let id = model[identifier].id;
+            let id = model[identifier]._id;
             document[key].push(id);
           });
         }
         else {
           if (!model[value]) { throw error_no_model_for_identifier(value); }
-          let id        = model[value].id;
+          let id        = model[value]._id;
           document[key] = id;
         }
       }
