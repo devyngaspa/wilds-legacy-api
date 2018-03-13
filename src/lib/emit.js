@@ -15,19 +15,6 @@ class Emit {
     let method   = get_method_for_event(event);
 
     return emitter[method](data, options)
-    // return new Promise( (resolve, reject) => {
-    //   get_encounter(params, (typeof params == 'string')).then( (encounter) => {
-    //     let hash = {
-    //       actors:        encounter.get_actors(),
-    //       current_actor: encounter.get_current_actor(),
-    //       parties:       encounter.parties()
-    //     }
-    //     whelp.promise_hash(hash).then( (data) => {
-    //       data.encounter = encounter;
-    //       resolve(data);
-    //     });
-    //   });
-    // });
   }
 }
 

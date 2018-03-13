@@ -30,8 +30,9 @@ class Weffect {
       let hp = action.target.get('hp') - this.value;
       action.target.set('hp', hp);
       action.target.save().then( () => {
-        console.log(action.target.get('name') + ' takes ' + this.value + ' damage, leaving them at ' + action.target.get('hp') + ' HP');
-        resolve();
+        Log.encounter(encounter).action(action).effect(this).damage().then( () => {
+          resolve();
+        });
       });
     });
   }

@@ -1,5 +1,6 @@
 {
   "name": "Flame Wrath",
+  "target": "enemy",
   "effects": [
     {
       "type": "damage",

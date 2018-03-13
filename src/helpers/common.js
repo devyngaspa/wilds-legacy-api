@@ -137,7 +137,6 @@ module.exports = {
 
   compact: (array) => { return array.filter( (element) => { return (element != undefined && element != null); }); }
 
-
 }
 
 

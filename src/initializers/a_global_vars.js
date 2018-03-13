@@ -15,6 +15,7 @@ wlog            = function(...args) { console.log(...args); };
 Simulate        = require('../lib/simulate');
 Load            = require('../lib/load');
 Emit            = require('../lib/emit');
+Log             = require('../lib/log');
 
 Simulation      = require('../lib/simulation');
 Decider         = require('../lib/decide');

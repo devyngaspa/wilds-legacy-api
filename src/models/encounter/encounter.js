@@ -3,6 +3,7 @@ const encounter_schema = Wdb.schema({
   current_turn:     Number,
   turns:            [mongoose.Schema.Types.ObjectId],
   action_history:   [mongoose.Schema.Types.Mixed],
+  log:              [String],
   encounter_states: [mongoose.Schema.Types.Mixed]
 });
 
@@ -16,7 +17,7 @@ encounter_schema.methods.get_actors = function () {
 
 encounter_schema.methods.get_current_actor = function () {
   return new Promise( (resolve, reject) => {
-    id = this.turns[this.current_turn];
+    let id = this.turns[this.current_turn];
     Actor.findById(id).then( (actor) => {
       resolve(actor);
     });
@@ -25,10 +26,28 @@ encounter_schema.methods.get_current_actor = function () {
 
 encounter_schema.methods.get_current_party = function () {
   return new Promise( (resolve, reject) => {
-    id = this.turns[this.current_turn];
+    this.get_current_actor().then( (actor) => {
+      this.parties().then( (parties) => {
+        let party = parties.find((party) => { 
+          return party.actor_ids.map((id) => { return id.toString(); }).includes(actor.get('id')); })
+        resolve(party);
+      });
+    });
+  });
+}
+
+encounter_schema.methods.get_living_party = function () {
+  return new Promise( (resolve, reject) => {
     this.parties().then( (parties) => {
-      party = parties.find((party) => { return party.actor_ids.includes(id); })
-      resolve(party);
+      let hash = {};
+      parties.forEach( (party) => { hash[party.get('id')] = party.get_is_wipe(); })
+      whelp.promise_hash(hash).then( (results) => {
+        let id = null;
+        Object.keys(results).forEach( (key) => {
+          if (results[key]) { id = key; }
+        });
+        resolve(whelp.find_by(parties, 'id', id))
+      });
     });
   });
 }
@@ -90,8 +109,10 @@ encounter_schema.methods.start = function() {
         whelp.sort_by(actors, 'quickness');
         this.set_turns(actors);
         this.push_encounter_state().then( () => {
-          this.save().then( () => {
-            resolve();
+          Log.encounter(this).start().then( () => {
+            this.save().then( () => {
+              resolve();
+            });
           });
         });
       });
@@ -101,7 +122,9 @@ encounter_schema.methods.start = function() {
 
 encounter_schema.methods.end = function() {
   return new Promise( (resolve, reject) => {
-    resolve();
+    Log.encounter(this).end().then( () => {
+      resolve();
+    });
   });
 }
 
@@ -136,16 +159,17 @@ encounter_schema.methods.next = function(options) {
         this.get_current_party().then( (party) => {
           if (!party.is_allegiance_enemy()) { resolve(); }
           else {
-            let decider = new Decider(this, 'enemy')
-            decider.get_next_action().then( (next_action) => {
-              this.perform(next_action).then( () => {
-                this.get_is_ended().then( (is_ended) => {
-                  if (is_ended) { 
-                    this.end().then( () => {
-                      resolve()
-                    });
-                  }
-                  else { resolve(); }
+            Decider.generate(this, 'enemy').then( (decider) => {
+              decider.get_next_action().then( (next_action) => {
+                this.perform(next_action).then( () => {
+                  this.get_is_ended().then( (is_ended) => {
+                    if (is_ended) { 
+                      this.end().then( () => {
+                        resolve()
+                      });
+                    }
+                    else { resolve(); }
+                  });
                 });
               });
             });
@@ -158,11 +182,31 @@ encounter_schema.methods.next = function(options) {
 
 encounter_schema.methods.next_turn = function() {
   return new Promise( (resolve, reject) => {
-    this.increment_current_turn();
-    this.push_encounter_state().then( () => {
-      this.save().then( () => {
-        resolve();
-      });
+    this.get_is_ended().then( (is_ended) => {
+      if (is_ended) { 
+        this.end().then( () => {
+          resolve()
+        });
+      }
+      else {
+        this.increment_current_turn();
+        this.get_current_actor().then( (actor) => {
+          if (actor.is_dead()) { 
+            this.next_turn().then( () => {
+              resolve();
+            });
+          }
+          else {
+            this.push_encounter_state().then( () => {
+              Log.encounter(this).turn().then( () => {
+                this.save().then( () => {
+                  resolve();
+                });
+              });
+            });
+          }
+        });
+      };
     });
   });
 }

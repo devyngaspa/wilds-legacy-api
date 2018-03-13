@@ -11,6 +11,15 @@ party_schema.methods.get_is_wipe = function () {
   });
 }
 
+party_schema.methods.is_allegiance_enemy = function () {
+  return (this.allegiance === 'enemy');
+}
+
+party_schema.methods.is_allegiance_player = function () {
+  return (this.allegiance === 'player');
+}
+
+
 Party = mongoose.model('party', party_schema);
 
 module.exports = Party;

@@ -1,0 +1,9 @@
+{
+  "name": "Player One",
+  "relationships": [
+    {
+      "key":  "encounter_id",
+      "value": "encounter_fight"
+    }
+  ]
+}

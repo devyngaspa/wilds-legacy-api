@@ -1,8 +1,8 @@
 function get_all_models () {
   models = new Array();
-  let dir_names = fs.readdirSync('./models');
+  let dir_names = fs.readdirSync(SRCPATH + '/models');
   dir_names.forEach( (dir_name) => {
-    let file_names = fs.readdirSync('./models/' + dir_name);
+    let file_names = fs.readdirSync(SRCPATH + '/models/' + dir_name);
     file_names.forEach( (file_name) => {
       let model = require('../models/' + dir_name + '/' + file_name);
       models.push(model);

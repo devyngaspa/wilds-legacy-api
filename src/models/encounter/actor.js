@@ -28,6 +28,17 @@ actor_schema.methods.is_dead = function () {
   return this.hp <= 0.0;
 }
 
+actor_schema.methods.get_performables = function () {
+  return new Promise( (resolve, reject) => {
+    this.abilities().then( (abilities) => {
+      let promises = abilities.map( (ability) => { return Waction.to_performable(ability); });
+      Promise.all(promises).then( (performables) => {
+        resolve(performables);
+      });
+    });
+  });
+}
+
 Actor = mongoose.model('Actor', actor_schema);
 
 module.exports = Actor;

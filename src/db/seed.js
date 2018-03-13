@@ -2,13 +2,13 @@ var model_map = {};
 var relationship_map = [];
 
 function initialize_model_map (dir) {
-  let dir_names = fs.readdirSync('./db/seeds/' + dir);
+  let dir_names = fs.readdirSync(SRCPATH + '/db/seeds/' + dir);
 
   dir_names.forEach(function(dir_name) {
 
     let model_name = inflection.singularize(dir_name);
     model_name     = inflection.classify(model_name);
-    let file_names = fs.readdirSync('./db/seeds/' + dir + '/' + dir_name);
+    let file_names = fs.readdirSync(SRCPATH + '/db/seeds/' + dir + '/' + dir_name);
 
     file_names.forEach(function(file_name) {
       let identifier = file_name.slice(0, -5);
@@ -35,10 +35,10 @@ function insert_into_relationship_map (document, relationships) {
 }
 
 function get_model_namespace (model_name) {
-  let dir_names = fs.readdirSync('./models');
+  let dir_names = fs.readdirSync(SRCPATH + '/models');
   let ns = null;
   dir_names.forEach( (dir_name) => {
-    let file_names = fs.readdirSync('./models/' + dir_name);
+    let file_names = fs.readdirSync(SRCPATH + '/models/' + dir_name);
     file_names.forEach( (file_name) => {
       if (model_name === file_name.slice(0, -3)) { ns = dir_name; }
     });
@@ -72,18 +72,18 @@ function error_no_model_for_identifier(identifier) {
 
 function seed_models_from_json (dir) {
 
-  let dir_names = fs.readdirSync('./db/seeds/' + dir);
+  let dir_names = fs.readdirSync(SRCPATH + '/db/seeds/' + dir);
   let promises = new Array();
 
   dir_names.forEach(function(dir_name) {
 
     let model_name = inflection.singularize(dir_name);
     let model      = constantize_model(model_name);
-    let file_names = fs.readdirSync('./db/seeds/' + dir + '/' + dir_name);
+    let file_names = fs.readdirSync(SRCPATH + '/db/seeds/' + dir + '/' + dir_name);
 
     file_names.forEach(function(file_name) {
 
-      let obj           = JSON.parse(fs.readFileSync('./db/seeds/' + dir + '/' + dir_name + '/' + file_name));
+      let obj           = JSON.parse(fs.readFileSync(SRCPATH + '/db/seeds/' + dir + '/' + dir_name + '/' + file_name));
       let identifier    = file_name.slice(0, -5);
       let relationships = whelp.copy_obj_array(obj.relationships)
       delete obj.relationships;

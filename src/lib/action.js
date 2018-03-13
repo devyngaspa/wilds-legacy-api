@@ -29,19 +29,31 @@ class Waction {
   static generate(options={}) {
     return new Promise( (resolve, reject) => {
       if (!options.type) { return reject(error_undefined_action_type(options.type)); }
-      // let options = {
-      //   type:   type,
-      //   value:  value,
-      //   agent:  agent,
-      //   target: target
-      // };
       resolve(new Waction(options));
     });
   }
 
+  static to_performable(obj) {
+    return new Promise( (resolve, reject) => {
+      switch (obj.constructor.name) {
+        case 'model':
+          obj.ability_tmpl().then( (ability_tmpl) => {
+            resolve({ 
+              type:        'ability', 
+              _id:         obj.get('id'),
+              name:        ability_tmpl.get('name'), 
+              description: ability_tmpl.get('description'),
+              value:       obj,
+              target_type: 'enemy'
+            });
+          });
+      }
+    });
+  }
+
   action_history_object () {
-    obj = {};
-    obj.type = this.type;
+    let obj   = {};
+    obj.type  = this.type;
     obj.value = this.value.get('id')
     obj.agent = this.agent.get('id')
     if (this.target) { obj.target = this.target.get('id'); }
@@ -55,10 +67,6 @@ class Waction {
           this.apply_action_ability(encounter).then( () => {
             resolve();
           });
-        // default:
-        //   console.log("222", this.type);
-        //   //throw error_undefined_action_type(this.type);
-        //   reject();
       }
     });
   }
@@ -66,11 +74,16 @@ class Waction {
   apply_action_ability (encounter) {
     return new Promise( (resolve, reject) => {
       this.value.ability_tmpl().then( (ability_tmpl) => {
-        console.log(this.agent.get('name') + ' casts ' + ability_tmpl.get('name') + ' on ' + this.target.get('name'));
-        let effects  = ability_tmpl.get('effects').map( (e) => { return new Weffect(e); });
-        this.apply_effects(effects[0], effects, encounter).then( () => {
-          if (this.target.is_dead()) { console.log(this.target.get('name') + ' has been slain!'); }
-          resolve();
+        Log.encounter(encounter).action(this).apply().then( () => {
+          let effects  = ability_tmpl.get('effects').map( (e) => { return new Weffect(e); });
+          this.apply_effects(effects[0], effects, encounter).then( () => {
+            if (this.target.is_dead()) { 
+              Log.encounter(encounter).action(this).lethal().then( () => {
+                resolve();
+              });
+            }
+            else { resolve(); }
+          });
         });
       });
     });

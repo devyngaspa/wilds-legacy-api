@@ -1,5 +1,14 @@
 class Decider {
 
+  static generate (...args) {
+    return new Promise( (resolve, reject) => {
+      let decider = new this(...args);
+      decider.initialize().then( () => {
+        resolve(decider);
+      });
+    });
+  }
+
   constructor (encounter, allegiance) {
     this.encounter  = encounter;
     this.allegiance = allegiance;
@@ -29,7 +38,7 @@ class Decider {
       this.encounter.get_current_actor().then( (actor) => {
         actor.abilities().then( (abilities) => {
           this.get_opposing_actor().then( (enemy) => {
-            resolve(Waction.generate('ability', abilities[0], actor, enemy));
+            resolve(Waction.generate({type: 'ability', value: abilities[0], agent: actor, target: enemy}));
           });
         });
       });

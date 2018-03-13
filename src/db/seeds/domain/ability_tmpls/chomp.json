@@ -1,5 +1,6 @@
 {
   "name": "Double Chomp",
+  "target": "enemy",
   "effects": [
     {
       "type": "damage",

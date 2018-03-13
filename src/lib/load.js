@@ -30,12 +30,22 @@ class Load {
         start_encounter(encounter).then( () => {
           let hash = {
             actors:        encounter.get_actors(),
+            parties:       encounter.parties(),
             current_actor: encounter.get_current_actor(),
-            parties:       encounter.parties()
+            current_party: encounter.get_current_party(),
           }
           whelp.promise_hash(hash).then( (data) => {
-            data.encounter = encounter;
-            resolve(data);
+            data.encounter    = encounter;
+            if (data.current_party.is_allegiance_player()) {
+              data.current_actor.get_performables().then( (performables) => {
+                data.performables = performables;
+                resolve(data);
+              });
+            }
+            else {
+              resolve(data);
+            }
+
           });
         });
       });

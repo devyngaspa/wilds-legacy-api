@@ -1,6 +1,6 @@
 class EncounterStateEventReceiver extends WEventReceiver {
 
-  increment (options={}) {
+  next (options={}) {
     Encounter.findById(options.data.id).then( (encounter) => {
       if (encounter.get_current_state() === options.data.state) {
         encounter.next().then( () => {
@@ -10,6 +10,22 @@ class EncounterStateEventReceiver extends WEventReceiver {
       else {
         this._load_and_emit_update(encounter, options);
       }
+    });
+  }
+
+  perform (options={}) {
+    Encounter.findById(options.data.id).then( (encounter) => {
+      Actor.findById(options.data.agent._id).then( (agent) => {
+        Actor.findById(options.data.target._id).then( (target) => {
+          Ability.findById(options.data.value._id).then( (value) => {
+            Waction.generate({ type: options.data.type, value, agent, target }).then( (action) => {
+              encounter.perform(action).then( () => {
+                this._load_and_emit_update(encounter, options);
+              });
+            });
+          });
+        });
+      });
     });
   }
 

@@ -1,3 +1,0 @@
-WS_REC_EVENT_ENCOUNTER_STATE_INCREMENT = 'encounter.state.increment'
-
-module.exports = WS_REC_EVENT_ENCOUNTER_STATE_INCREMENT;
