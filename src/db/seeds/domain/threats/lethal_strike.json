@@ -1,0 +1,9 @@
+{
+  "name": "Lethal Strike",
+  "relationships": [
+    {
+      "key":  "counter_ids",
+      "value": []
+    }
+  ]
+}

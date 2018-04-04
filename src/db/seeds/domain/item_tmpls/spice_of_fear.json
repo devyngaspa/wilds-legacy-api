@@ -1,0 +1,10 @@
+{
+  "name": "Spice of Fear",
+  "description": "Eater takes the next turn",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

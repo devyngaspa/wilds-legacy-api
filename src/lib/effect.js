@@ -10,7 +10,7 @@ class Weffect {
     this.type     = null;
     this.value    = null;
     this.duration = null;
-    whelp.set_from_options(this, options);
+    whelp.object.set_from_options(this, options);
     set_constants(this);
   }
 

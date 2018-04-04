@@ -1,0 +1,10 @@
+{
+  "name": "Howling Essence",
+  "description": "Permanently increases a character's quickness",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Spice of Grit",
+  "description": "Reduces damage taken by the eater to 1 next turn.",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

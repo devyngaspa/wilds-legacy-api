@@ -4,7 +4,7 @@ const teardown = require('./teardown');
 function get_singular_ref_method(model_name, prop) {
   return function() {
     promise = new Promise( (resolve, reject) => {
-      model = whelp.constantize_model(model_name);
+      model = whelp.model.constantize_model(model_name);
       model.findById(this[prop]).then( (document) => {
         resolve(document);
       });
@@ -15,9 +15,9 @@ function get_singular_ref_method(model_name, prop) {
 
 function get_many_ref_method(model_name, prop) {
   return function() {
-    model = whelp.constantize_model(model_name);
+    model = whelp.model.constantize_model(model_name);
     promise = new Promise( (resolve, reject) => {
-      whelp.find_many_by_id(model, this[prop]).then( (documents) => {
+      whelp.model.find_many_by_id(model, this[prop]).then( (documents) => {
         resolve(documents);
       })
     })
@@ -34,10 +34,10 @@ class Wdb {
 
   reset() {
     return new Promise( (resolve, reject) => {
-      console.log("Resetting database");
+      wlog("Resetting database...");
       this.drop().then( () => {
         this.populate().then( () => {
-          console.log("Reset database");
+          wlog("Reset database");
           resolve();
         });
       });
@@ -46,9 +46,9 @@ class Wdb {
 
   populate() {
     return new Promise( (resolve, reject) => {
-      console.log("Populating database");
+      wlog("Populating database...");
       seeds.populate(this.seed).then( () => {
-        console.log("Populated database");
+        wlog("Populated database");
         resolve();
       });
     });
@@ -57,9 +57,9 @@ class Wdb {
 
   drop() {
     return new Promise( (resolve, reject) => {
-      console.log("Dropping database");
+      wlog("Dropping database...");
       teardown.drop(this.mgdb).then( () => {
-        console.log("Dropped database");
+        wlog("Dropped database");
         resolve();
       });
     });

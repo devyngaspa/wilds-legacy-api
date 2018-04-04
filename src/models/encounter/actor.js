@@ -9,7 +9,6 @@ const actor_schema = Wdb.schema({
     quickness: Number,
     resilience: Number
   },
-  character_tmpl_id: { type: mongoose.Schema.Types.ObjectId, ref: 'CharacterTmpl' },
   ability_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ability' }]
 });
 
@@ -20,7 +19,7 @@ actor_schema.methods.set_actorable = function (type, id) {
 }
 
 actor_schema.methods.get_actorable = function (type, id) {
-  model = whelp.constantize_model(this.actorable.type);
+  model = whelp.model.constantize_model(this.actorable.type);
   return model.findById(this.actorable.id);
 }
 

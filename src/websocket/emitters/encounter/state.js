@@ -1,7 +1,9 @@
+const WS_EMIT_EVENT_ENCOUNTER_STATE_UPDATE = require('../../events/emit/encounter/state/update')
+
 class EncounterStateEventEmitter extends WEventEmitter {
 
-  update(data, options={}) {
-    options.io.to(options.data.room).emit(WS_EMIT_EVENT_ENCOUNTER_STATE_UPDATE, data);
+  update(data) {
+    io.to(this.options.data.room).emit(WS_EMIT_EVENT_ENCOUNTER_STATE_UPDATE, data);
   }
 
 };

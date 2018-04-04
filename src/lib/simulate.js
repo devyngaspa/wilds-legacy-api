@@ -5,11 +5,11 @@ function get_parties(player_party=null, enemy_party=null) {
     }
     else {
       promises = {
-        player: whelp.find_first(Party, {allegiance: 'player'}),
-        enemy:  whelp.find_first(Party, {allegiance: 'enemy'})
+        player: whelp.model.find_first(Party, {allegiance: 'player'}),
+        enemy:  whelp.model.find_first(Party, {allegiance: 'enemy'})
       }
 
-      whelp.promise_hash(promises).then( (results) => { resolve(results); });
+      whelp.promise.hash(promises).then( (results) => { resolve(results); });
     }
   });
 }

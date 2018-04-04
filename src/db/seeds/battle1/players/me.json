@@ -4,6 +4,18 @@
     {
       "key":  "encounter_id",
       "value": "encounter_fight"
+    },
+    {
+      "key":  "quest_ids",
+      "value": []
+    },
+    {
+      "key":  "expedition_ids",
+      "value": []
+    },
+    {
+      "key":  "character_ids",
+      "value": ["character_archivus", "character_damien", "character_leiandra", "character_ateevy"]
     }
   ]
 }

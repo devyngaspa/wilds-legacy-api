@@ -17,8 +17,8 @@ class Decider {
   initialize() {
     return new Promise( (resolve, reject) => {
       this.encounter.parties().then( (parties) => {
-        this.party          = whelp.find_by(parties, 'allegiance', this.allegiance);
-        this.opposing_party = whelp.find_by(parties, 'allegiance', this.allegiance, true);
+        this.party          = whelp.array.find_by(parties, 'allegiance', this.allegiance);
+        this.opposing_party = whelp.array.find_by(parties, 'allegiance', this.allegiance, true);
         resolve()
       });
     });

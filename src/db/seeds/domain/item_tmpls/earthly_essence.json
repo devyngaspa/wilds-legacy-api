@@ -1,0 +1,10 @@
+{
+  "name": "Earthly Essence",
+  "description": "Permanently increases a character's endurance",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

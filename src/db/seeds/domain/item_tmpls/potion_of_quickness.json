@@ -1,0 +1,10 @@
+{
+  "name": "Potion of Quickness",
+  "description": "Increases quickness for the encounter",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

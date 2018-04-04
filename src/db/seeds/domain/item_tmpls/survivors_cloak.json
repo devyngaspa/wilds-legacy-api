@@ -1,0 +1,10 @@
+{
+  "name": "Survivor's Cloak",
+  "description": "Increases max warmth by while this is in your inventory",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

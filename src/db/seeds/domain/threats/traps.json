@@ -1,0 +1,11 @@
+{
+  "name": "Traps",
+  "relationships": [
+    {
+      "key":  "counter_ids",
+      "value": [
+        "ability_tmpl_burn"
+      ]
+    }
+  ]
+}

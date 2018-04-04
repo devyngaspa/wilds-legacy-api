@@ -4,7 +4,6 @@
   "stats": {
     "ferocity": 10,
     "endurance": 7,
-    "knowledge": 1,
     "quickness": 3,
     "resilience": 2
   },
@@ -12,10 +11,6 @@
     {
       "key": "actorable",
       "value": "monster_bearshark"
-    },
-    {
-      "key": "monster_tmpl_id",
-      "value": "monster_tmpl_gigan"
     },
     {
       "key": "ability_ids",

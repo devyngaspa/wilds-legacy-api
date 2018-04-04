@@ -11,7 +11,7 @@ function initialize_model_map (dir) {
     let file_names = fs.readdirSync(SRCPATH + '/db/seeds/' + dir + '/' + dir_name);
 
     file_names.forEach(function(file_name) {
-      let identifier = file_name.slice(0, -5);
+      let identifier = [inflection.underscore(model_name), file_name.slice(0, -5)].join('_');
 
       model_map[model_name] = model_map[model_name] || {}
       model_map[model_name][identifier] = null;
@@ -32,24 +32,6 @@ function insert_into_relationship_map (document, relationships) {
     'document': document,
     'relationships': relationships
   });
-}
-
-function get_model_namespace (model_name) {
-  let dir_names = fs.readdirSync(SRCPATH + '/models');
-  let ns = null;
-  dir_names.forEach( (dir_name) => {
-    let file_names = fs.readdirSync(SRCPATH + '/models/' + dir_name);
-    file_names.forEach( (file_name) => {
-      if (model_name === file_name.slice(0, -3)) { ns = dir_name; }
-    });
-  });
-  return ns;
-}
-
-function constantize_model (model_name) {
-  ns    = get_model_namespace(model_name)
-  model = require('../models/' + ns + '/' + model_name)
-  return model
 }
 
 function print_seed (model_name, document, identifier, err=null) {
@@ -78,14 +60,14 @@ function seed_models_from_json (dir) {
   dir_names.forEach(function(dir_name) {
 
     let model_name = inflection.singularize(dir_name);
-    let model      = constantize_model(model_name);
+    let model      = whelp.model.constantize_model(model_name);
     let file_names = fs.readdirSync(SRCPATH + '/db/seeds/' + dir + '/' + dir_name);
 
     file_names.forEach(function(file_name) {
 
       let obj           = JSON.parse(fs.readFileSync(SRCPATH + '/db/seeds/' + dir + '/' + dir_name + '/' + file_name));
       let identifier    = file_name.slice(0, -5);
-      let relationships = whelp.copy_obj_array(obj.relationships)
+      let relationships = whelp.array.copy_obj_array(obj.relationships)
       delete obj.relationships;
       let promise       = model.create(obj)
 
@@ -122,8 +104,10 @@ function hook_up_relationships() {
       else {
         let model_name = key.split('_').slice(0, -1).join('_');
         model_name     = inflection.classify(model_name);
-        let model      = model_map[model_name];
-        if (Array.isArray(value)) {
+        let schema_rel = document.schema.obj[key]
+        if (Array.isArray(schema_rel)) {
+          let model_name = schema_rel[0].ref
+          let model      = model_map[model_name];
           value.forEach( (identifier) => {
             if (!model[identifier]) { throw error_no_model_for_identifier(identifier); }
             let id = model[identifier]._id;
@@ -131,6 +115,8 @@ function hook_up_relationships() {
           });
         }
         else {
+          let model_name = schema_rel.ref
+          let model      = model_map[model_name];
           if (!model[value]) { throw error_no_model_for_identifier(value); }
           let id        = model[value]._id;
           document[key] = id;

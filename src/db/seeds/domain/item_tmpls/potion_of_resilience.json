@@ -1,0 +1,10 @@
+{
+  "name": "Potion of Resilience",
+  "description": "Increases resilience for the encounter",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

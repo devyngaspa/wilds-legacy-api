@@ -1,3 +1,5 @@
+const WS_EMIT_EVENT_ENCOUNTER_STATE_UPDATE = require('../../events/emit/encounter/state/update')
+
 class EncounterStateEventReceiver extends WEventReceiver {
 
   next (options={}) {

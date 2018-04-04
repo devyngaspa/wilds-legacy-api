@@ -1,0 +1,9 @@
+{
+  "name": "Colossal",
+  "relationships": [
+    {
+      "key":  "counter_ids",
+      "value": []
+    }
+  ]
+}

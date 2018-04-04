@@ -7,7 +7,7 @@ function get_event_receiver(event) {
 }
 
 function get_events_for_dir(dir) {
-  if (whelp.is_js_file(dir)) { 
+  if (whelp.file.is_js_file(dir)) { 
     return [BASE_DIR + dir.slice(0, -3)]; }
   else {
     let contents = fs.readdirSync(BASE_DIR + dir);
@@ -23,14 +23,14 @@ function get_events_for_dir(dir) {
 function get_method_for_event(event) { return event.split('.').pop(); }
 
 function get_events() { 
-  let paths  = get_events_for_dir('events').map( (path) => { return '../.' + path; });
+  let paths  = get_events_for_dir('events/receive').map( (path) => { return '../.' + path; });
   let events = paths.map( (path) => { 
     let event    = require(path);
     let receiver = get_event_receiver(event)
     if (!receiver) { return null; }
     return { name: event, receiver: receiver }; 
   });
-  return whelp.compact(events);
+  return whelp.array.compact(events);
 }
 
 module.exports = {

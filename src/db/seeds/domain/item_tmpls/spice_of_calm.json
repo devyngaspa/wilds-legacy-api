@@ -1,0 +1,10 @@
+{
+  "name": "Spice of Calm",
+  "description": "Eater will ignore ailments and debuffs next turn.",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

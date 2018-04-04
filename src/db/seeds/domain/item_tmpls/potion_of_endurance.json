@@ -1,0 +1,10 @@
+{
+  "name": "Potion of Endurance",
+  "description": "Increases endurance for the encounter",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

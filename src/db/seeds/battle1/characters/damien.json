@@ -1,13 +1,13 @@
 {
   "name": "Damien",
-  "hp": 12,
+  "hp_max": 12,
   "stats": {
     "ferocity": 10,
     "endurance": 7,
-    "knowledge": 3,
     "quickness": 5,
     "resilience": 5
   },
+  "state": "active",
   "relationships": [
     {
       "key": "character_tmpl_id",

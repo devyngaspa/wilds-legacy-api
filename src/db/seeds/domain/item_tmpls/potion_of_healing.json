@@ -1,0 +1,10 @@
+{
+  "name": "Potion of Healing",
+  "description": "Restores health",
+  "effects": [
+    {
+      "type": "heal",
+      "value": 5.0
+    }
+  ]
+}

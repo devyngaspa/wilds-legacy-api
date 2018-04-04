@@ -12,7 +12,7 @@ encounter_schema.methods.set_turns = function (actors) {
 }
 
 encounter_schema.methods.get_actors = function () {
-  return whelp.find_many_by_id(Actor, this.turns, true)
+  return whelp.model.find_many_by_id(Actor, this.turns, true)
 }
 
 encounter_schema.methods.get_current_actor = function () {
@@ -41,12 +41,12 @@ encounter_schema.methods.get_living_party = function () {
     this.parties().then( (parties) => {
       let hash = {};
       parties.forEach( (party) => { hash[party.get('id')] = party.get_is_wipe(); })
-      whelp.promise_hash(hash).then( (results) => {
+      whelp.promise.hash(hash).then( (results) => {
         let id = null;
         Object.keys(results).forEach( (key) => {
           if (results[key]) { id = key; }
         });
-        resolve(whelp.find_by(parties, 'id', id))
+        resolve(whelp.array.find_by(parties, 'id', id))
       });
     });
   });
@@ -89,7 +89,7 @@ encounter_schema.methods.get_encounter_state = function() {
       obj.parties  = parties.map( (party) => { return party.toObject(); });
       let promises = parties.map( (party) => { return party.actors(); });
       Promise.all(promises).then( (actors) => {
-        obj.actors         = whelp.flatten(actors).map( (actor) => { return actor.toObject(); });
+        obj.actors         = whelp.array.flatten(actors).map( (actor) => { return actor.toObject(); });
         obj.current_turn   = this.current_turn;
         obj.turns          = this.turns.slice(0, this.turns.length);
         obj.action_history = this.action_history.slice(0, this.action_history.length).map( (action) => { return Object.assign({}, action); });
@@ -105,8 +105,8 @@ encounter_schema.methods.start = function() {
     this.parties().then( (parties) => {
       let promises = parties.map( (party) => { return party.actors(); });
       Promise.all(promises).then( (results) => {
-        let actors = whelp.flatten(results);
-        whelp.sort_by(actors, 'quickness');
+        let actors = whelp.array.flatten(results);
+        whelp.array.sort_by(actors, 'quickness');
         this.set_turns(actors);
         this.push_encounter_state().then( () => {
           Log.encounter(this).start().then( () => {

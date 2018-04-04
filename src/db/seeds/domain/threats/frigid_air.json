@@ -1,0 +1,9 @@
+{
+  "name": "Frigid Air",
+  "relationships": [
+    {
+      "key":  "counter_ids",
+      "value": []
+    }
+  ]
+}

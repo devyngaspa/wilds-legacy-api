@@ -4,7 +4,6 @@
   "stats": {
     "ferocity": 10,
     "endurance": 7,
-    "knowledge": 3,
     "quickness": 5,
     "resilience": 5
   },
@@ -12,10 +11,6 @@
     {
       "key": "actorable",
       "value": "character_damien"
-    },
-    {
-      "key": "character_tmpl_id",
-      "value": "character_tmpl_berserker"
     },
     {
       "key": "ability_ids",

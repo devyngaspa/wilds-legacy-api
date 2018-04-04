@@ -9,7 +9,7 @@ module.exports = {
 
     let seed = 'battle1'
     let db = new Wdb(mgdb, seed);
-    db.reset();
+    //db.reset();
   }
 
 }

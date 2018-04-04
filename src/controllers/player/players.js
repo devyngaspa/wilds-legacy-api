@@ -9,7 +9,7 @@ class PlayersController {
   }
 
   index () {
-    whelp.find_first(Player, {name: 'Player One'}).then( (player) => {
+    whelp.model.find_first(Player, {name: 'Player One'}).then( (player) => {
       this.response.json({ player });
     });
   }

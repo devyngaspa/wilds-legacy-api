@@ -22,7 +22,7 @@ class Waction {
     this.value  = null;
     this.agent  = null;
     this.target = null;
-    whelp.set_from_options(this, options);
+    whelp.object.set_from_options(this, options);
     set_constants(this);
   }
 
