@@ -29,9 +29,20 @@ WEventEmitter   = require('../websocket/emitters/base')
 
 SRCPATH         = './src'
 
-DIFFICULTY_EASY   = 'easy'
-DIFFICULTY_MEDIUM = 'medium'
-DIFFICULTY_HARD   = 'hard'
+QUEST_DIFFICULTY_EASY   = 'easy'
+QUEST_DIFFICULTY_MEDIUM = 'medium'
+QUEST_DIFFICULTY_HARD   = 'hard'
+
+QUEST_OBJECTIVE_HUNT    = 'hunt'
+QUEST_OBJECTIVE_FORAGE  = 'forage'
+QUEST_OBJECTIVE_EXPLORE = 'explore'
+QUEST_OBJECTIVE_RESCUE  = 'rescue'
+
+ITEM_TMPL_TYPE_CONSUMABLE = 'consumable'
+ITEM_TMPL_TYPE_PERMANENT  = 'permanent'
+
+ITEM_TMPL_CONTEXT_ENCOUNTER = 'encounter'
+ITEM_TMPL_CONTEXT_ALL       = 'all'
 
 module.exports = {
 

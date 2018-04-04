@@ -1,7 +1,7 @@
 {
-  "name": "Berserker",
+  "name": "Tracker",
   "description": "",
   "gender": "male",
-  "role": "fighter",
+  "role": "utility",
   "attack_type": "melee"
 }

@@ -1,6 +1,8 @@
 {
   "name": "Spice of Grit",
   "description": "Reduces damage taken by the eater to 1 next turn.",
+  "type": "consumable",
+  "context": "encounter",
   "effects": [
     {
       "type": "heal",

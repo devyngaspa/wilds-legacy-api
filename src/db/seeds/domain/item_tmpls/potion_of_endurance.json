@@ -1,6 +1,8 @@
 {
   "name": "Potion of Endurance",
   "description": "Increases endurance for the encounter",
+  "type": "consumable",
+  "context": "encounter",
   "effects": [
     {
       "type": "heal",

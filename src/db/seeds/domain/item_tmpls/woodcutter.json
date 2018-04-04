@@ -1,6 +1,6 @@
 {
-  "name": "Survivor's Cloak",
-  "description": "Increases max warmth by while this is in your inventory",
+  "name": "Woodcutter",
+  "description": "Increases ferocity while this is in your inventory",
   "type": "permanent",
   "context": "all",
   "effects": [

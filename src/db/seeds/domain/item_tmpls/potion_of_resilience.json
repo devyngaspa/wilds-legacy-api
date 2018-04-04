@@ -1,6 +1,8 @@
 {
   "name": "Potion of Resilience",
   "description": "Increases resilience for the encounter",
+  "type": "consumable",
+  "context": "encounter",
   "effects": [
     {
       "type": "heal",

@@ -1,6 +1,8 @@
 {
   "name": "Earthly Essence",
   "description": "Permanently increases a character's endurance",
+  "type": "consumable",
+  "context": "all",
   "effects": [
     {
       "type": "heal",

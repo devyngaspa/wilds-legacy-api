@@ -88,6 +88,10 @@ class Gen {
   static quest(params={}, options={}) {
     return (new GenQuest(params, options)).process();
   }
+
+  static character(params={}, options={}) {
+    return (new GenCharacter(params, options)).process();
+  }
 }
 
 class GenQuest {
@@ -102,9 +106,32 @@ class GenQuest {
     return new Promise( (resolve, reject) => {
       Gen.default_obj(Quest, this.params, this.options).then( (dobj) => {
         Gen.sample_obj(Quest, this.params, dobj, this.options).then( (sobj) => {
-          let obj = Object.assign({}, dobj, sobj, this.params)
+          let obj = Object.assign({}, dobj, sobj, this.params);
           Quest.create(obj).then( (quest) => {
-            resolve(quest)
+            resolve(quest);
+          });
+        });
+      });
+    });
+  }
+
+}
+
+class GenCharacter {
+
+  constructor(params, options={}) {
+    this.params   = params;
+    this.options  = options;
+    this.document = null;
+  }
+
+  process () {
+    return new Promise( (resolve, reject) => {
+      Gen.default_obj(Character, this.params, this.options).then( (dobj) => {
+        Gen.sample_obj(Character, this.params, dobj, this.options).then( (sobj) => {
+          let obj = Object.assign({}, dobj, sobj, this.params);
+          Character.create(obj).then( (quest) => {
+            resolve(quest);
           });
         });
       });

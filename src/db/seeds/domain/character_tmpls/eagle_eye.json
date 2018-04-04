@@ -1,7 +1,7 @@
 {
-  "name": "Berserker",
+  "name": "Eagle Eye",
   "description": "",
   "gender": "male",
   "role": "fighter",
-  "attack_type": "melee"
+  "attack_type": "ranged"
 }

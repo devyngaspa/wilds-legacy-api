@@ -1,6 +1,8 @@
 {
   "name": "Spice of Rage",
   "description": "Doubles damage dealt by the eater next turn",
+  "type": "consumable",
+  "context": "encounter",
   "effects": [
     {
       "type": "heal",

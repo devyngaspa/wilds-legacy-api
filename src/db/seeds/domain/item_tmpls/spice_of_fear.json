@@ -1,6 +1,8 @@
 {
   "name": "Spice of Fear",
   "description": "Eater takes the next turn",
+  "type": "consumable",
+  "context": "encounter",
   "effects": [
     {
       "type": "heal",

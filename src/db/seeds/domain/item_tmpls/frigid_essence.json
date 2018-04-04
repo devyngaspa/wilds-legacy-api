@@ -1,6 +1,8 @@
 {
   "name": "Frigid Essence",
   "description": "Permanently increases a character's resilience",
+  "type": "consumable",
+  "context": "all",
   "effects": [
     {
       "type": "heal",

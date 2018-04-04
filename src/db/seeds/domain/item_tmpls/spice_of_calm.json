@@ -1,6 +1,8 @@
 {
   "name": "Spice of Calm",
   "description": "Eater will ignore ailments and debuffs next turn.",
+  "type": "consumable",
+  "context": "encounter",
   "effects": [
     {
       "type": "heal",

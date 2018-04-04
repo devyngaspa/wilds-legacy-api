@@ -1,7 +1,7 @@
 {
-  "name": "Serpent Mage",
+  "name": "Conjurer",
   "description": "",
-  "gender": "male",
+  "gender": "female",
   "role": "utility",
   "attack_type": "ranged"
 }

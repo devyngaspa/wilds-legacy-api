@@ -1,6 +1,8 @@
 {
   "name": "Fiery Essence",
   "description": "Permanently increases a character's ferocity",
+  "type": "consumable",
+  "context": "all",
   "effects": [
     {
       "type": "heal",

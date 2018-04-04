@@ -1,7 +1,7 @@
 {
-  "name": "Berserker",
+  "name": "Huntress",
   "description": "",
-  "gender": "male",
+  "gender": "female",
   "role": "fighter",
   "attack_type": "melee"
 }

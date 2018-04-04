@@ -1,6 +1,8 @@
 {
   "name": "Potion of Quickness",
   "description": "Increases quickness for the encounter",
+  "type": "consumable",
+  "context": "encounter",
   "effects": [
     {
       "type": "heal",

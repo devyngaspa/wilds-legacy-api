@@ -1,7 +1,7 @@
 {
-  "name": "Serpent Mage",
+  "name": "Phoenix Mage",
   "description": "",
   "gender": "male",
-  "role": "utility",
+  "role": "healer",
   "attack_type": "ranged"
 }

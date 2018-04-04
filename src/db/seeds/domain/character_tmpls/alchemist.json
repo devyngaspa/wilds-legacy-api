@@ -1,0 +1,7 @@
+{
+  "name": "Alchemist",
+  "description": "",
+  "gender": "female",
+  "role": "healer",
+  "attack_type": "melee"
+}

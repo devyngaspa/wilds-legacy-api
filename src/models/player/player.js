@@ -1,5 +1,6 @@
 const player_schema = Wdb.schema({
   name:           String,
+  currency:       Number,
   encounter_id:   { type: mongoose.Schema.Types.ObjectId, ref: 'Encounter' },
   quest_ids:      [{ type: mongoose.Schema.Types.ObjectId, ref: 'Quest' }],
   expedition_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expedition' }],
@@ -44,7 +45,7 @@ player_schema.methods.fill_quests = function () {
         })
       }
       else {
-        let difficulties = [DIFFICULTY_EASY, DIFFICULTY_MEDIUM, DIFFICULTY_HARD];
+        let difficulties = [QUEST_DIFFICULTY_EASY, QUEST_DIFFICULTY_MEDIUM, QUEST_DIFFICULTY_HARD];
         let quests_by_difficulty = whelp.array.group_by(quests, 'difficulty');
         whelp.array.for_each(difficulties, (difficulty) => { quests_by_difficulty[difficulty] = quests_by_difficulty[difficulty] || []});
 

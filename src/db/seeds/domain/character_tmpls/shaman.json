@@ -1,0 +1,7 @@
+{
+  "name": "Shaman",
+  "description": "",
+  "gender": "female",
+  "role": "healer",
+  "attack_type": "ranged"
+}

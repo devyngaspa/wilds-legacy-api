@@ -1,7 +1,7 @@
 {
-  "name": "Berserker",
+  "name": "Beastmaster",
   "description": "",
   "gender": "male",
-  "role": "fighter",
+  "role": "protector",
   "attack_type": "melee"
 }
