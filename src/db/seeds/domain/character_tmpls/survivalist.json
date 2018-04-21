@@ -2,6 +2,18 @@
   "name": "Survivalist",
   "description": "",
   "gender": "female",
-  "role": "protector",
-  "attack_type": "ranged"
+  "role": "leader",
+  "attack_type": "ranged",
+  "stats": {
+    "ferocity": 5,
+    "endurance": 10,
+    "quickness": 5,
+    "resilience": 5
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

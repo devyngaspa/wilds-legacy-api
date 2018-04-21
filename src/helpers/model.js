@@ -47,6 +47,19 @@ module.exports = {
     });
   },
 
+  find_or_create: (model, params) => {
+    return new Promise( (resolve, reject) => {
+      model.findOne(params).then( (document) => {
+        if (document) { resolve(document); }
+        else {
+          model.create(params).then( (new_document) => {
+            resolve(new_document);
+          });
+        }
+      });
+    });
+  },
+
   id_to_object_id: (id) => { return mongoose.Types.ObjectId(id); },
 
   ids_to_object_ids: (ids) => { return ids.map(id => whelp.model.id_to_object_id(id)); }

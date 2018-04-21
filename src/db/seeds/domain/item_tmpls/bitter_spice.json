@@ -1,6 +1,6 @@
 {
-  "name": "Spice of Fear",
-  "description": "Eater takes the next turn",
+  "name": "Bitter Spice",
+  "description": "Eater will ignore ailments and debuffs next turn.",
   "type": "consumable",
   "context": "encounter",
   "effects": [

@@ -9,6 +9,10 @@ var bodyParser   = require('body-parser');
 var http         = require('http');
 var debug        = require('debug')('wilds-api:server');
 var socketio     = require('socket.io')
+var passport     = require('passport')
+var session      = require('express-session')
+
+const secrets  = require('./config/secrets')
 
 
 var port = normalizePort(process.env.PORT || '3000');
@@ -21,6 +25,37 @@ HTTPSERV.on('error', onError);
 HTTPSERV.on('listening', onListening);
 
 io = socketio(HTTPSERV);
+
+// If you have your node.js behind a proxy and are using secure: true, you need to set "trust proxy" in express:
+APP.set('trust proxy', 1)
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+APP.use(logger('dev'));
+APP.use(bodyParser.json());
+APP.use(bodyParser.urlencoded({ extended: true }));
+APP.use(cookieParser(secrets.session.cookie_key));
+APP.use(express.static(path.join(__dirname, 'public')));
+
+APP.use(session({
+  cookie: { maxAge: 24 * 60 * 60 * 1000 },
+  secret: secrets.session.cookie_key,
+  resave: false,
+  saveUninitialized: true
+}));
+
+APP.use(passport.initialize());
+APP.use(passport.session());
+
+APP.use( (request, response, next) => {
+  if (request.session && request.session.cookie && request.session.cookie.expires > new Date()) {
+    next();
+  }
+  else {
+    this.response.sendStatus(423);
+    this.response.end();
+  }
+})
 
 
 function normalizePort(val) {
@@ -85,14 +120,6 @@ function onListening() {
 APP.set('views', path.join(__dirname, 'views'));
 APP.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-APP.use(logger('dev'));
-APP.use(bodyParser.json());
-APP.use(bodyParser.urlencoded({ extended: false }));
-APP.use(cookieParser());
-APP.use(express.static(path.join(__dirname, 'public')));
-
 Initialize.app()
 
 // catch 404 and forward to error handler
@@ -106,7 +133,7 @@ APP.use(function(req, res, next) {
 APP.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.APP.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);

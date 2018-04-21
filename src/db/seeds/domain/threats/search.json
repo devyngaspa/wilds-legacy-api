@@ -1,0 +1,15 @@
+{
+  "name": "Search",
+  "description": "",
+  "type": "role",
+  "relationships": [
+    {
+      "key":  "counter_ids",
+      "value": ["trait_scout"]
+    },
+    {
+      "key": "level_id",
+      "value": "level_1"
+    }
+  ]
+}

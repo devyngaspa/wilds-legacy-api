@@ -40,7 +40,7 @@ module.exports = {
     const WS_EVENT_CONNECTION = 'connection'
 
     io.on(WS_EVENT_CONNECTION, (socket) => {
-      console.log("made connection server");
+      console.log("Socket connection successful.");
 
       get_events().forEach( (event) => { 
         socket.on(event.name, (data) => {

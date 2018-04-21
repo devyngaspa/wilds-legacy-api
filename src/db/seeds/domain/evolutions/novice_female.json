@@ -1,0 +1,23 @@
+{
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_2"
+    },
+    {
+      "key":  "from_id",
+      "value": "character_tmpl_novice_female"
+    },
+    {
+      "key":  "to_ids",
+      "value": [
+        "character_tmpl_alchemist",
+        "character_tmpl_conjurer",
+        "character_tmpl_huntress",
+        "character_tmpl_pathfinder",
+        "character_tmpl_shaman",
+        "character_tmpl_survivalist"
+      ]
+    }
+  ]
+}

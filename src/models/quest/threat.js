@@ -1,7 +1,9 @@
 const threat_schema = Wdb.schema({
-  name: String,
+  name:        String,
   description: String,
-  counter_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'AbilityTmpl' }],
+  type:        String,
+  level_id:    { type: mongoose.Schema.Types.ObjectId, ref: 'Level' },
+  counter_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Trait' }],
 });
 
 Threat = mongoose.model('Threat', threat_schema);

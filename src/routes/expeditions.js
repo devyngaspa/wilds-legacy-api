@@ -2,9 +2,9 @@ var express               = require('express');
 var router                = express.Router();
 var ExpeditionsController = require('../controllers/quest/expeditions');
 
-router.post('/', function(request, response) {
-  controller = new ExpeditionsController(request, response);
+router.post('/', function(request, response, next) {
+  controller = new ExpeditionsController(request, response, next);
   controller.create();
 });
 
-module.exports = { path: '/expeditions', router: router };
+module.exports = { path: '/expeditions', router };

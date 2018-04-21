@@ -3,5 +3,17 @@
   "description": "",
   "gender": "female",
   "role": "healer",
-  "attack_type": "melee"
+  "attack_type": "melee",
+  "stats": {
+    "ferocity": 4,
+    "endurance": 4,
+    "quickness": 8,
+    "resilience": 9
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

@@ -1,12 +1,7 @@
-var Encounter = require('../../models/encounter/encounter');
+const Encounter = require('../../models/encounter/encounter');
+const BaseController = require('../base')
 
-class EncountersController {
-
-  constructor (request, response) {
-    this.request  = request;
-    this.response = response;
-    this.params   = request.params;
-  }
+class EncountersController extends BaseController {
 
   start () {
     let id = this.params.id;

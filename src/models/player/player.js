@@ -1,10 +1,12 @@
 const player_schema = Wdb.schema({
   name:           String,
   currency:       Number,
+  xp:             Number,
   encounter_id:   { type: mongoose.Schema.Types.ObjectId, ref: 'Encounter' },
   quest_ids:      [{ type: mongoose.Schema.Types.ObjectId, ref: 'Quest' }],
   expedition_ids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expedition' }],
-  character_ids:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Character' }]
+  character_ids:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Character' }],
+  level_id:       { type: mongoose.Schema.Types.ObjectId, ref: 'Level' },
 });
 
 player_schema.methods.embark = function (quest, characters) {
@@ -28,6 +30,16 @@ player_schema.methods.reset_quests = function () {
   return new Promise( (resolve, reject) => {
     Quest.remove({'_id': { $in: this.quest_ids}}).then( () => {
       this.fill_quests().then( () => {
+        resolve();
+      });
+    });
+  });
+}
+
+player_schema.methods.refresh_characters = function () {
+  return new Promise( (resolve, reject) => {
+    Character.remove({'_id': { $in: this.character_ids}, state: 'inactive'}).then( () => {
+      this.fill_characters().then( () => {
         resolve();
       });
     });
@@ -59,7 +71,7 @@ player_schema.methods.fill_quests = function () {
           whelp.array.for_each(difficulties, (difficulty) => {
             if (quests_by_difficulty[difficulty].length === 1) { delete quests_by_difficulty[difficulty] }
           });
-          let promises = Object.keys(quests_by_difficulty).map((difficulty) => { return Gen.quest({difficulty: difficulty, level: 1}, {player: this}) });
+          let promises = Object.keys(quests_by_difficulty).map((difficulty) => { return Gen.quest({difficulty: difficulty, level_id: this.level_id}, {player: this}) });
 
           Promise.all(promises).then( (new_quests) => {
             whelp.array.for_each(new_quests, (new_quest) => { this.quest_ids.push(new_quest.id) });
@@ -67,10 +79,17 @@ player_schema.methods.fill_quests = function () {
               resolve();
             });
           });
-
         }
-
       }
+    });
+  });
+}
+
+player_schema.methods.fill_characters = function () {
+  return new Promise( (resolve, reject) => {
+    let promises = whelp.array.times(3, () => { return Gen.character({level_id: this.level_id}, {player: this}) });
+    Promise.all(promises).then( (characters) => {
+      resolve(characters);
     });
   });
 }

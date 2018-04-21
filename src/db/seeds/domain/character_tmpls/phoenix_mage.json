@@ -3,5 +3,17 @@
   "description": "",
   "gender": "male",
   "role": "healer",
-  "attack_type": "ranged"
+  "attack_type": "ranged",
+  "stats": {
+    "ferocity": 7,
+    "endurance": 4,
+    "quickness": 6,
+    "resilience": 8
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

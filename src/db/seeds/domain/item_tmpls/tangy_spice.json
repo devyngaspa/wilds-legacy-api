@@ -1,6 +1,6 @@
 {
-  "name": "Spice of Calm",
-  "description": "Eater will ignore ailments and debuffs next turn.",
+  "name": "Tangy Spice",
+  "description": "Eater takes the next turn",
   "type": "consumable",
   "context": "encounter",
   "effects": [

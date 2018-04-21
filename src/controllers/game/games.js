@@ -1,10 +1,6 @@
-class GamesController {
+const BaseController = require('../base')
 
-  constructor (request, response) {
-    this.request  = request;
-    this.response = response;
-    this.params   = request.params;
-  }
+class GamesController extends BaseController {
 
   load () {
     let promises = {
@@ -13,7 +9,8 @@ class GamesController {
       item_tmpls:      ItemTmpl.find({}),
       monster_tmpls:   MonsterTmpl.find({}),
       quest_tmpls:     QuestTmpl.find({}),
-      threats:         Threat.find({})
+      threats:         Threat.find({}),
+      levels:          Level.find({})
     }
     whelp.promise.hash(promises).then( (hash) => {
       this.response.json({game: hash});

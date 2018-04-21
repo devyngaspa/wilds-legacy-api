@@ -3,5 +3,17 @@
   "description": "",
   "gender": "female",
   "role": "fighter",
-  "attack_type": "melee"
+  "attack_type": "melee",
+  "stats": {
+    "ferocity": 11,
+    "endurance": 4,
+    "quickness": 7,
+    "resilience": 3
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

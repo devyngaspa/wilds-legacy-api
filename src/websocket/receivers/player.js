@@ -13,6 +13,16 @@ class PlayerEventReceiver extends WEventReceiver {
     options.socket.leave(options.data.room);
   }
 
+  refresh_characters (options={}) {
+    Player.findById(options.data.id).then( (player) => {
+      player.refresh_characters().then( () => {
+        Load.player(player).then( (data) => {
+          Emit.event(WS_EMIT_EVENT_PLAYER_STATE_UPDATE, data, options);
+        });
+      });
+    });
+  }
+
 };
 
 module.exports = PlayerEventReceiver;

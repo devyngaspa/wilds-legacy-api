@@ -12,6 +12,15 @@ module.exports = {
 
   flatten: (arrays) => { return [].concat.apply([], arrays); },
 
+  sum: (array) => {
+    if (array.length === 0) { return 0; }
+    return array.reduce(((a, b) => { return a + b }), 0);
+  },
+
+  sum_by: (array, property) => {
+    return whelp.array.sum(array.map((element) => { return element[property]; }))
+  },
+
   for_each: (array, callback) => {
     for(let i = 0; i < array.length; i++) {
       let element = array[i];

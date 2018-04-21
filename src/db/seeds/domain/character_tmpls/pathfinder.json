@@ -2,6 +2,18 @@
   "name": "Pathfinder",
   "description": "",
   "gender": "female",
-  "role": "protector",
-  "attack_type": "melee"
+  "role": "leader",
+  "attack_type": "melee",
+  "stats": {
+    "ferocity": 3,
+    "endurance": 9,
+    "quickness": 7,
+    "resilience": 6
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

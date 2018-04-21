@@ -2,6 +2,18 @@
   "name": "Conjurer",
   "description": "",
   "gender": "female",
-  "role": "utility",
-  "attack_type": "ranged"
+  "role": "scout",
+  "attack_type": "ranged",
+  "stats": {
+    "ferocity": 7,
+    "endurance": 4,
+    "quickness": 8,
+    "resilience": 6
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

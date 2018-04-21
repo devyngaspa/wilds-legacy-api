@@ -1,0 +1,19 @@
+{
+  "name": "Novice",
+  "description": "",
+  "gender": "female",
+  "role": "fighter",
+  "attack_type": "melee",
+  "stats": {
+    "ferocity": 5,
+    "endurance": 5,
+    "quickness": 5,
+    "resilience": 5
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_1"
+    }
+  ]
+}

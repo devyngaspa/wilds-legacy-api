@@ -1,13 +1,13 @@
 const quest_schema = Wdb.schema({
   duration:      Number,
   xp:            Number,
-  level:         Number,
   difficulty:    String,
   objective:     String,
   state:         { type: String, default: 'active' },
   rewards:       [{ type: mongoose.Schema.Types.Mixed}],
   quest_tmpl_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Quest' },
   threat_ids:    [{ type: mongoose.Schema.Types.ObjectId, ref: 'Threat' }],
+  level_id:      { type: mongoose.Schema.Types.ObjectId, ref: 'Level' }
 });
 
 

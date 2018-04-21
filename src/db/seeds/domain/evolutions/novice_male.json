@@ -1,0 +1,23 @@
+{
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_2"
+    },
+    {
+      "key":  "from_id",
+      "value": "character_tmpl_novice_male"
+    },
+    {
+      "key":  "to_ids",
+      "value": [
+        "character_tmpl_beastmaster",
+        "character_tmpl_berserker",
+        "character_tmpl_eagle_eye",
+        "character_tmpl_phoenix_mage",
+        "character_tmpl_serpent_mage",
+        "character_tmpl_tracker"
+      ]
+    }
+  ]
+}

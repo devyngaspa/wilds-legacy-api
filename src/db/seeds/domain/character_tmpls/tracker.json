@@ -2,6 +2,18 @@
   "name": "Tracker",
   "description": "",
   "gender": "male",
-  "role": "utility",
-  "attack_type": "melee"
+  "role": "scout",
+  "attack_type": "melee",
+  "stats": {
+    "ferocity": 4,
+    "endurance": 5,
+    "quickness": 11,
+    "resilience": 5
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

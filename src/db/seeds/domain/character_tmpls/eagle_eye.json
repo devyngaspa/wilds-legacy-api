@@ -3,5 +3,17 @@
   "description": "",
   "gender": "male",
   "role": "fighter",
-  "attack_type": "ranged"
+  "attack_type": "ranged",
+  "stats": {
+    "ferocity": 12,
+    "endurance": 4,
+    "quickness": 4,
+    "resilience": 5
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

@@ -1,16 +1,14 @@
-var Player = require('../../models/player/player');
+const Player = require('../../models/player/player');
+const BaseController = require('../base')
 
-class PlayersController {
+class PlayersController extends BaseController {
 
-  constructor (request, response) {
-    this.request  = request;
-    this.response = response;
-    this.params   = request.params;
-  }
-
-  index () {
-    whelp.model.find_first(Player, {name: 'Player One'}).then( (player) => {
-      this.response.json({ player });
+  load () {
+    let user_id = this.request.query.user_id;
+    User.findById(user_id).then( (user) => {
+      user.get_or_create_player().then( (player) => {
+        this.response.json({ player });
+      });
     });
   }
 

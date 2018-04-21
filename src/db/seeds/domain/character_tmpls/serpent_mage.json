@@ -2,6 +2,18 @@
   "name": "Serpent Mage",
   "description": "",
   "gender": "male",
-  "role": "utility",
-  "attack_type": "ranged"
+  "role": "scout",
+  "attack_type": "ranged",
+  "stats": {
+    "ferocity": 4,
+    "endurance": 6,
+    "quickness": 9,
+    "resilience": 6
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }

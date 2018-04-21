@@ -1,18 +1,15 @@
-var express = require('express');
-var router = express.Router();
+var express         = require('express');
+var router          = express.Router();
+var UsersController = require('../controllers/account/users');
 
-/* GET users listing. */
-router.get('/users', function(req, res, next) {
-  res.json([
-    {
-      id: 1,
-      username: 'developer'
-    },
-    {
-      id: 2,
-      username: 'player'
-    }
-  ]);
+router.get('/login', (request, response, next) => {
+  let controller = new UsersController(request, response, next);
+  controller.login();
 });
 
-module.exports = { path: '/users', router: router };
+router.post('/restore', (request, response, next) => {
+  let controller = new UsersController(request, response, next);
+  controller.restore();
+});
+
+module.exports = { path: '/users', router };

@@ -1,5 +1,6 @@
 {
   "name": "Player One",
+  "xp": 0,
   "relationships": [
     {
       "key":  "encounter_id",
@@ -15,7 +16,11 @@
     },
     {
       "key":  "character_ids",
-      "value": ["character_archivus", "character_damien", "character_leiandra", "character_ateevy"]
+      "value": []
+    },
+    {
+      "key":  "level_id",
+      "value": "level_1"
     }
   ]
 }

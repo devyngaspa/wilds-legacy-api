@@ -1,5 +1,5 @@
 {
-  "name": "Spice of Grit",
+  "name": "Gritty Spice",
   "description": "Reduces damage taken by the eater to 1 next turn.",
   "type": "consumable",
   "context": "encounter",

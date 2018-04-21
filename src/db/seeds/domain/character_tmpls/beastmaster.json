@@ -2,6 +2,18 @@
   "name": "Beastmaster",
   "description": "",
   "gender": "male",
-  "role": "protector",
-  "attack_type": "melee"
+  "role": "leader",
+  "attack_type": "melee",
+  "stats": {
+    "ferocity": 6,
+    "endurance": 11,
+    "quickness": 3,
+    "resilience": 5
+  },
+  "relationships": [
+    {
+      "key":  "level_id",
+      "value": "level_5"
+    }
+  ]
 }
